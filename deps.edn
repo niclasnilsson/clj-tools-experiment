@@ -1,0 +1,42 @@
+;; 
+;; Code to check version:
+;;
+;; (require '[niclasnilsson.version-example :as v]))
+;; (v/ver)
+;; 
+
+{:deps
+ {
+  ;; With this (v/ver) returns "version 1.0.0" 
+  ; niclasnilsson/version-example {:mvn/version "1.0.0"}
+
+  ;; With this (v/ver) returns "version 1.1.0" 
+  ; niclasnilsson/version-example {:mvn/version "1.1.0"}
+
+  ;; With this (v/ver) returns "branch 'master'; tag 'master-1". No overrides seem to work.
+  niclasnilsson/version-example {:git/url "https://github.com/niclasnilsson/version-example.git"
+                                 :tag  "master-1"
+                                 :sha  "db6050806811bc55c6ed168625e15d653e4b80a1"}
+
+  }
+
+ :aliases
+ {
+  ;; Seems to override mvn only?
+  ;
+  ; clj -R:old can 'override' :mvn/version "1.0.0". (Sort of. It's the same thing)
+  ; clj -R:old override :mvn/version "1.1.0" as expected.
+  ; clj -R:old doesn't override 'master-1' from git. Shouldn't it?
+  :old {:override-deps {niclasnilsson/version-example {:mvn/version "1.0.0"}}}
+
+  ;; Doesn't seem to be ablo to override anything, but has some unexpected results:
+  ;
+  ; clj -R:grenen with deps :mvn/version "1.0.0" returns "1.1.0"! ***Very*** unexpected!
+  ; clj -R:grenen with deps :mvn/version "1.1.0" returns "1.1.0". No override.
+  ; clj -R:grenen doesn't override 'master-1' from git. Shouldn't it?
+  :grenen {:override-deps {niclasnilsson/version-example {:git/url  "https://github.com/niclasnilsson/version-example.git"
+                                                          :tag  "grenen-2"
+                                                          :sha  "5a5f992033d4ee6f5650d26719d80ba36b39fc28"}}}
+  }
+ 
+ }
