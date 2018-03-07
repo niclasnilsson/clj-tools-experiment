@@ -8,15 +8,15 @@
 {:deps
  {
   ;; With this (v/ver) returns "version 1.0.0" 
-  ; niclasnilsson/version-example {:mvn/version "1.0.0"}
+  niclasnilsson/version-example {:mvn/version "1.0.0"}
 
   ;; With this (v/ver) returns "version 1.1.0" 
   ; niclasnilsson/version-example {:mvn/version "1.1.0"}
 
   ;; With this (v/ver) returns "branch 'master'; tag 'master-1". No overrides seem to work.
-  niclasnilsson/version-example {:git/url "https://github.com/niclasnilsson/version-example.git"
-                                 :tag  "master-1"
-                                 :sha  "db6050806811bc55c6ed168625e15d653e4b80a1"}
+  ; niclasnilsson/version-example {:git/url "https://github.com/niclasnilsson/version-example.git"
+  ;                                :tag  "master-1"
+  ;                                :sha  "db6050806811bc55c6ed168625e15d653e4b80a1"}
 
   }
 
